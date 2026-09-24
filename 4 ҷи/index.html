@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="tj" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панҷхок | Портали Расмии Деҳа</title>
+    <!-- FontAwesome icons & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #059669;
+            --primary-hover: #047857;
+            --accent: #10b981;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        /* Header Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .navbar {
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-icon {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .btn-icon:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 2rem 100px;
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(5, 150, 105, 0.1);
+            color: var(--primary);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3);
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+        }
+
+        /* Social Hub Grid */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .social-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .social-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .wa-card i { color: #25D366; }
+        .tg-card i { color: #0088cc; }
+
+        /* Media Gallery Section */
+        .gallery-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .filter-btns {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .filter-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .media-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .media-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .media-preview {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .media-body {
+            padding: 1.5rem;
+        }
+
+        .media-type-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .media-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        /* Admin Modal Panel */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-main);
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            background: var(--bg-card);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-mountain-sun"></i> Панҷхок
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">Дар бора</a></li>
+                <li><a href="#social">Шабакаҳо</a></li>
+                <li><a href="#gallery">Галерея</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button class="btn-icon" id="themeToggle" title="Ивази Реҷа">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="btn-primary" onclick="openAdminModal()">
+                    <i class="fa-solid fa-lock"></i> Админ
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">
+            <i class="fa-solid fa-location-dot"></i> Ҷамоати деҳоти Зидеҳ, Варзоб
+        </div>
+        <h1>Манзара ва Сарвати Деҳаи Панҷхок</h1>
+        <p>Портали расмии ахбор, манзараҳои табиӣ, сурудҳо ва гуруҳҳои иҷтимоии маҳаллаи Панҷхок.</p>
+        <div class="hero-btns">
+            <a href="#gallery" class="btn-primary">Тамошои Галерея</a>
+            <a href="#social" class="btn-primary" style="background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border);">Шабакаҳо</a>
+        </div>
+    </section>
+
+    <!-- Content Container -->
+    <div class="container">
+        <!-- Social Networks Hub -->
+        <section id="social" style="margin-bottom: 5rem;">
+            <div class="section-header">
+                <h2>Шабакаҳои Иҷтимоӣ</h2>
+                <p>Ба маркази алоқа ва ахбори деҳа дар платформаҳои маъруф пайваст шавед</p>
+            </div>
+            <div class="social-grid">
+                <a href="https://chat.whatsapp.com/" target="_blank" class="social-card wa-card">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <h3>Гуруҳи WhatsApp</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Муҳокима ва алоқаи сокинон</p>
+                </a>
+                <a href="https://t.me/" target="_blank" class="social-card tg-card">
+                    <i class="fa-paper-plane"></i>
+                    <h3>Гуруҳи Telegram</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Чат ва гуфтугӯи озод</p>
+                </a>
+                <a href="https://t.me/" target="_blank" class="social-card tg-card">
+                    <i class="fa-bullhorn"></i>
+                    <h3>Канали Telegram</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Хабарҳои расмӣ ва навигарӣ</p>
+                </a>
+                <a href="https://t.me/" target="_blank" class="social-card tg-card">
+                    <i class="fa-robot"></i>
+                    <h3>Боти Telegram</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Хадамоти худкор ва саволҳо</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Media Gallery -->
+        <section id="gallery">
+            <div class="section-header">
+                <h2>Мультимедиа ва Галерея</h2>
+                <p>Расмҳо, видеоҳо ва сурудҳои беҳтарин оид ба Панҷхок</p>
+            </div>
+
+            <div class="gallery-controls">
+                <div class="filter-btns">
+                    <button class="filter-btn active" onclick="filterGallery('all')">Ҳама</button>
+                    <button class="filter-btn" onclick="filterGallery('image')">Расмҳо</button>
+                    <button class="filter-btn" onclick="filterGallery('video')">Видеоҳо</button>
+                    <button class="filter-btn" onclick="filterGallery('audio')">Аудио/Суруд</button>
+                </div>
+            </div>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Content will dynamically populate here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Admin Modal -->
+    <div class="modal" id="adminModal">
+        <div class="modal-content">
+            <i class="fa-solid fa-xmark close-modal" onclick="closeAdminModal()"></i>
+            
+            <div id="loginSection">
+                <h3 style="margin-bottom: 1rem;">Воридшавии Админ</h3>
+                <div class="form-group">
+                    <label>Пароли бехатарӣ</label>
+                    <input type="password" id="adminPass" class="form-control" placeholder="Паролро ворид кунед">
+                </div>
+                <button class="btn-primary" style="width: 100%;" onclick="handleLogin()">Ворид шудан</button>
+            </div>
+
+            <div id="controlSection" style="display: none;">
+                <h3 style="margin-bottom: 1rem;">Иловаи Медиа ба Галерея</h3>
+                <div class="form-group">
+                    <label>Унвон (Ном)</label>
+                    <input type="text" id="itemTitle" class="form-control" placeholder="Масалан: Манзараи баҳорӣ">
+                </div>
+                <div class="form-group">
+                    <label>Намуди файл</label>
+                    <select id="itemType" class="form-control">
+                        <option value="image">Расм (Image URL)</option>
+                        <option value="video">Видео (YouTube Embed/URL)</option>
+                        <option value="audio">Аудио / Суруд (MP3 Link)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Пайванд (URL)</label>
+                    <input type="text" id="itemUrl" class="form-control" placeholder="https://...">
+                </div>
+                <button class="btn-primary" style="width: 100%; margin-bottom: 10px;" onclick="addNewMedia()">Илова кардан</button>
+                <button class="btn-primary" style="width: 100%; background: var(--text-muted);" onclick="handleLogout()">Баромад</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Портали Международнии Деҳаи Панҷхок | Ҳамаи ҳуқуқҳо ҳифз шудаанд.</p>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        // Password for Admin Access
+        const PASS_KEY = "panjhok2026";
+        let isAdmin = false;
+
+        // Default Data Set
+        let mediaData = JSON.parse(localStorage.getItem('panjhok_db')) || [
+            { id: 1, title: "Деҳаи Панҷхок дар фасли баҳор", type: "video", url: "https://www.youtube.com/embed/GaIfYVmk_yo" },
+            { id: 2, title: "Суруди Панҷхок", type: "video", url: "https://www.youtube.com/embed/mcci5Ybto-o" },
+            { id: 3, title: "Табиати кӯҳистони Варзоб", type: "image", url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" }
+        ];
+
+        // Dark/Light Theme Switching
+        const themeBtn = document.getElementById('themeToggle');
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            themeBtn.innerHTML = newTheme === 'light' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+        });
+
+        // Gallery Render Function
+        function renderGallery(filter = 'all') {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '';
+
+            const items = filter === 'all' ? mediaData : mediaData.filter(i => i.type === filter);
+
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'media-card';
+
+                let previewHtml = '';
+                if(item.type === 'image') {
+                    previewHtml = `<img src="${item.url}" class="media-preview" alt="${item.title}">`;
+                } else if(item.type === 'video') {
+                    if(item.url.includes('youtube.com') || item.url.includes('youtu.be')) {
+                        previewHtml = `<iframe src="${item.url}" class="media-preview" style="border:none;" allowfullscreen></iframe>`;
+                    } else {
+                        previewHtml = `<video src="${item.url}" class="media-preview" controls></video>`;
+                    }
+                } else if(item.type === 'audio') {
+                    previewHtml = `<div style="padding: 2rem; background: var(--border); text-align:center;"><audio src="${item.url}" controls style="width:100%;"></audio></div>`;
+                }
+
+                const deleteBtn = isAdmin ? `<button onclick="deleteMedia(${item.id})" style="background:#ef4444; color:white; border:none; padding:6px 12px; border-radius:6px; cursor:pointer; margin-top:10px;"><i class="fa-solid fa-trash"></i> Ӯчирдан</button>` : '';
+
+                card.innerHTML = `
+                    ${previewHtml}
+                    <div class="media-body">
+                        <span class="media-type-tag">${item.type}</span>
+                        <div class="media-title">${item.title}</div>
+                        ${deleteBtn}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterGallery(type) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderGallery(type);
+        }
+
+        // Modal Controls
+        function openAdminModal() { document.getElementById('adminModal').style.display = 'flex'; }
+        function closeAdminModal() { document.getElementById('adminModal').style.display = 'none'; }
+
+        function handleLogin() {
+            const pass = document.getElementById('adminPass').value;
+            if(pass === PASS_KEY) {
+                isAdmin = true;
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('controlSection').style.display = 'block';
+                renderGallery();
+            } else {
+                alert('Парол нодуруст аст!');
+            }
+        }
+
+        function handleLogout() {
+            isAdmin = false;
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('controlSection').style.display = 'none';
+            document.getElementById('adminPass').value = '';
+            renderGallery();
+            closeAdminModal();
+        }
+
+        function addNewMedia() {
+            const title = document.getElementById('itemTitle').value;
+            const type = document.getElementById('itemType').value;
+            let url = document.getElementById('itemUrl').value;
+
+            if(!title || !url) return alert('Ҳамаи майдонҳоро пур кунед!');
+
+            if(type === 'video' && url.includes('watch?v=')) {
+                url = url.replace('watch?v=', 'embed/');
+            }
+
+            mediaData.push({ id: Date.now(), title, type, url });
+            localStorage.setItem('panjhok_db', JSON.stringify(mediaData));
+            renderGallery();
+
+            document.getElementById('itemTitle').value = '';
+            document.getElementById('itemUrl').value = '';
+            alert('Сарфарозгона илова шуд!');
+        }
+
+        function deleteMedia(id) {
+            if(confirm('Оё мехоҳед ин файлро нест кунед?')) {
+                mediaData = mediaData.filter(item => item.id !== id);
+                localStorage.setItem('panjhok_db', JSON.stringify(mediaData));
+                renderGallery();
+            }
+        }
+
+        // Initialize App
+        renderGallery();
+    </script>
+</body>
+</html>
